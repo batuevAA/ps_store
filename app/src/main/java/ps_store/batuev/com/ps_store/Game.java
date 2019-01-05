@@ -4,8 +4,9 @@ public class Game {
     private String name;
     private String info;
     private String image_url;
+    private byte[] image_src;
     private int price;
-    private String console;
+    private GamePlatform console;
     private int kolvo;
 
 
@@ -59,16 +60,6 @@ public class Game {
     }
 
 
-    public String getConsole() {
-        return console;
-    }
-
-
-    public void setConsole(String console) {
-        this.console = console;
-    }
-
-
     public int getKolvo() {
         return kolvo;
     }
@@ -76,5 +67,25 @@ public class Game {
 
     public void setKolvo(int kolvo) {
         this.kolvo = kolvo;
+    }
+
+
+    public byte[] getImage_src() {
+        return image_src;
+    }
+
+
+    public void setImage_src(byte[] image_src) {
+        this.image_src = image_src;
+    }
+
+
+    public GamePlatform getConsole() {
+        return console;
+    }
+
+
+    public void setConsole(GamePlatform console) {
+        this.console = console;
     }
 }
