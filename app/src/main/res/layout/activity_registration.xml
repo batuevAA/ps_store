@@ -71,8 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Номер банковской карты"
-                    android:inputType="number"
-                    android:maxLength="16"
+                    android:inputType="text"
             />
 
             <EditText
@@ -85,9 +84,12 @@
             />
 
             <Button
+                    android:id="@+id/reg_button"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="зарегистрироваться"
+                    android:onClick="registration"
+                    android:enabled="false"
             />
         </LinearLayout>
 
