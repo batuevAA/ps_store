@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".RegistrationActivity" android:orientation="vertical">
+
+    <Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:navigationIcon="?android:attr/homeAsUpIndicator">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Регистрация"
+                android:textSize="24dp"
+                android:textColor="#ffffff"
+        />
+    </Toolbar>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+
+            <EditText
+                    android:id="@+id/first_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Имя"
+                    android:inputType="text"
+            />
+
+
+            <EditText
+                    android:id="@+id/last_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Фамилия"
+                    android:inputType="text"
+            />
+
+            <EditText
+                    android:id="@+id/login"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Логин"
+                    android:inputType="text"
+            />
+
+            <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Пароль"
+                    android:inputType="text"
+            />
+
+            <EditText
+                    android:id="@+id/card_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Номер банковской карты"
+                    android:inputType="number"
+                    android:maxLength="16"
+            />
+
+            <EditText
+                    android:id="@+id/ccv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="CCV"
+                    android:inputType="number"
+                    android:maxLength="3"
+            />
+
+            <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="зарегистрироваться"
+            />
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

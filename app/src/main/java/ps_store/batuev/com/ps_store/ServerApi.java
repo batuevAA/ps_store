@@ -1,6 +1,7 @@
 package ps_store.batuev.com.ps_store;
 public class ServerApi {
-    private static final String SERVVER_URL = "";
+    private static final String SERVER_URL = "";
+
 
     /**
      * Авторизация
@@ -21,13 +22,15 @@ public class ServerApi {
     /**
      * Получить список игр
      * */
-    public static void getGameList() {}
+    public static void getGameList() {
+    }
 
 
 
     /**
      * Покупка игры
      * */
-    public static void buy(User user, Game game) {}
+    public static void buy(User user, Game game) {
+    }
 
 }
