@@ -37,6 +37,8 @@ public class ServerApi {
 
         return resp.result.get(0);
     }
+
+
     private static class LoginResponse {
         private List<User> result;
     }
@@ -45,8 +47,32 @@ public class ServerApi {
     /**
      * Регистрация
      * */
-    public static int registration(User user) {
-        return 0;
+    public static void registration(User user) {
+        Request checkUser = new Request();
+        checkUser.query = "SELECT * FROM USERS WHERE login = \'" + user.getLogin() + "\'";
+        String checkUserResponse = sendRequest(checkUser);
+        if (checkUserResponse == null)
+            return;
+
+        LoginResponse checkUserResp = JSON.fromJson(checkUserResponse, LoginResponse.class);
+        if (checkUserResp.result.size() > 0)
+            return;
+
+        StringBuilder request = new StringBuilder();
+        request.append("INSERT INTO USERS SET ")
+                .append("first_name='").append(user.getFirst_name()).append('\'').append(", ")
+                .append("last_name='").append(user.getLast_name()).append('\'').append(", ")
+                .append("login='").append(user.getLogin()).append('\'').append(", ")
+                .append("password='").append(user.getPassword()).append('\'').append(", ")
+                .append("cash=0").append(", ")
+                .append("card_number='").append(user.getCard_number()).append('\'').append(", ")
+                .append("cvv=").append(user.getCvv());
+
+        Request regRequest = new Request();
+        regRequest.type = "insert";
+        regRequest.query = request.toString();
+
+        sendRequest(regRequest);
     }
 
 

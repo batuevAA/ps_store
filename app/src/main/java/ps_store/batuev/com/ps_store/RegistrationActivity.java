@@ -2,6 +2,7 @@ package ps_store.batuev.com.ps_store;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -132,7 +133,7 @@ public class RegistrationActivity extends Activity {
 
 
     public void registration(View view) {
-        User user = new User();
+        final User user = new User();
         user.setFirst_name(first_name.getText().toString());
         user.setLast_name(last_name.getText().toString());
         user.setLogin(login.getText().toString());
@@ -140,7 +141,19 @@ public class RegistrationActivity extends Activity {
         user.setCard_number(card_number.getText().toString());
         user.setCvv(Integer.parseInt(ccv.getText().toString()));
 
-        ServerApi.registration(user);
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                ServerApi.registration(user);
+                return null;
+            }
+
+
+            @Override
+            protected void onPostExecute(Void v) {
+                onBackPressed();
+            }
+        }.execute();
     }
 
 }
