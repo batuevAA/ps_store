@@ -1,4 +1,5 @@
 package ps_store.batuev.com.ps_store;
+import android.util.Log;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -8,13 +9,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 
 
 
 
 public class ServerApi {
-    private static final String SERVER_URL = "";
+    private static final String SERVER_URL = "http://192.168.0.100:80/store.php";
 
 
     /**
@@ -24,11 +26,19 @@ public class ServerApi {
         Request request = new Request();
         request.query = "SELECT * FROM USERS WHERE login = \'" + login + "\' and password = \'" + password + "\'";
 
-        String data = sendRequest(request);
-        if (data == null)
+        String response = sendRequest(request);
+        if (response == null)
             return null;
 
-        return new User();
+
+        LoginResponse resp = JSON.fromJson(response, LoginResponse.class);
+        if (resp.result.size() != 1)
+            return null;
+
+        return resp.result.get(0);
+    }
+    private static class LoginResponse {
+        private List<User> result;
     }
 
 
@@ -44,9 +54,17 @@ public class ServerApi {
      * Получить список игр
      * */
     private static final String ALL_GAMES = "SELECT * FROM GAMES";
-    public static ArrayList<Game> getGameList() {
-        ArrayList<Game> result = new ArrayList<>();
-        return result;
+    public static List<Game> getGameList() {
+        Request request = new Request();
+        request.query = ALL_GAMES;
+
+        GameListResponse resp = JSON.fromJson(sendRequest(request), GameListResponse.class);
+        return resp.result;
+    }
+
+
+    private static class GameListResponse {
+        private List<Game> result;
     }
 
 
@@ -97,7 +115,8 @@ public class ServerApi {
             rd.close();
 
             return response.toString();
-        } catch (Exception e) {
+        } catch (Throwable e) {
+            Log.e("ERR", "sendRequest: ", e);
             return null;
         } finally {
             if (connection != null) {

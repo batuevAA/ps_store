@@ -7,8 +7,10 @@ public class User {
     private String password;
     private int cash;
     private String card_number;
-    private int ccv;
+    private int cvv;
 
+
+    public static User CURRENT_USER = null;
 
     public int getId() {
         return id;
@@ -80,12 +82,26 @@ public class User {
     }
 
 
-    public int getCcv() {
-        return ccv;
+    public int getCvv() {
+        return cvv;
     }
 
 
-    public void setCcv(int ccv) {
-        this.ccv = ccv;
+    public void setCvv(int cvv) {
+        this.cvv = cvv;
+    }
+
+
+    @Override public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", cash=" + cash +
+                ", card_number='" + card_number + '\'' +
+                ", cvv=" + cvv +
+                '}';
     }
 }

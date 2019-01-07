@@ -55,24 +55,57 @@ public class RegistrationActivity extends Activity {
         regButton = findViewById(R.id.reg_button);
 
 
-
-
-        first_name.addTextChangedListener(new Watcher(first_name));
-        last_name.addTextChangedListener(new Watcher(last_name));
-        login.addTextChangedListener(new Watcher(login));
-        password.addTextChangedListener(new Watcher(password));
-        ccv.addTextChangedListener(new Watcher(ccv));
+        first_name.addTextChangedListener(listener);
+        last_name.addTextChangedListener(listener);
+        login.addTextChangedListener(listener);
+        password.addTextChangedListener(listener);
+        card_number.addTextChangedListener(listener);
+        ccv.addTextChangedListener(listener);
     }
 
 
+    private void checkValid() {
+        String fName = first_name.getText().toString();
+        if (fName.trim().equals(EMPTY_STRING)) {
+            regButton.setEnabled(false);
+            return;
+        }
 
-    private void checkValide() {
+
+        String lName = last_name.getText().toString();
+        if (lName.trim().equals(EMPTY_STRING)) {
+            regButton.setEnabled(false);
+            return;
+        }
+
+
+        String log = login.getText().toString();
+        if (log.trim().equals(EMPTY_STRING)) {
+            regButton.setEnabled(false);
+            return;
+        }
+
+
+        String pass = password.getText().toString();
+        if (pass.trim().equals(EMPTY_STRING)) {
+            regButton.setEnabled(false);
+            return;
+        }
+
+
+        String code = ccv.getText().toString();
+        if (code.trim().equals(EMPTY_STRING)) {
+            regButton.setEnabled(false);
+            return;
+        }
+
+
         Matcher matcher = CARD_NUMBER_PATTERN.matcher(card_number.getText().toString());
-
+        regButton.setEnabled(matcher.find());
     }
 
 
-    private static final Pattern CARD_NUMBER_PATTERN = Pattern.compile("\\d{16}");
+    private static final Pattern CARD_NUMBER_PATTERN = Pattern.compile("^\\d{16}$");
 
 
 
@@ -81,15 +114,13 @@ public class RegistrationActivity extends Activity {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
         @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+        public void afterTextChanged(Editable s) {
+            checkValid();
         }
-
-
-        @Override
-        public void afterTextChanged(Editable s) {}
     };
 
 
@@ -101,43 +132,15 @@ public class RegistrationActivity extends Activity {
 
 
     public void registration(View view) {
+        User user = new User();
+        user.setFirst_name(first_name.getText().toString());
+        user.setLast_name(last_name.getText().toString());
+        user.setLogin(login.getText().toString());
+        user.setPassword(password.getText().toString());
+        user.setCard_number(card_number.getText().toString());
+        user.setCvv(Integer.parseInt(ccv.getText().toString()));
 
+        ServerApi.registration(user);
     }
 
-
-    private static class Watcher implements TextWatcher {
-        private final EditText editText;
-        private boolean valide = false;
-
-        private Watcher(EditText editText) {
-            this.editText = editText;
-        }
-
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (s == null) {
-                valide = false;
-                return;
-            }
-
-            valide = !s.toString().trim().equals(EMPTY_STRING);
-        }
-
-
-        @Override public void afterTextChanged(Editable s) {
-
-        }
-
-
-        public boolean isValide() {
-            return valide;
-        }
-    }
 }
