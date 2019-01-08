@@ -2,10 +2,44 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              android:background="#81d4fa"
               android:orientation="vertical">
 
 
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent" android:text="213"/>
+    <TextView
+            android:id="@+id/gameName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="DESTINY"
+            android:gravity="center"
+            android:padding="16dp"
+            android:textStyle="bold"
+            android:textSize="20dp"
+    />
 
+    <ImageView
+            android:id="@+id/gameImage"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:src="@drawable/tmp"
+    />
+
+    <TextView
+            android:id="@+id/gamePlatform"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Платформа: Xbox"
+            android:paddingTop="4dp"
+            android:padding="16dp"
+    />
+
+    <TextView
+            android:id="@+id/gamePrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3000 р."
+            android:padding="16dp"
+            android:textColor="@color/colorAccent"
+    />
 
 </LinearLayout>

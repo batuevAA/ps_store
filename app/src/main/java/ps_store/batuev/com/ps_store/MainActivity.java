@@ -1,11 +1,14 @@
 package ps_store.batuev.com.ps_store;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
+import java.util.List;
 
 
 
@@ -16,6 +19,7 @@ public class MainActivity extends Activity {
     private EditText password;
 
 
+    @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +27,20 @@ public class MainActivity extends Activity {
 
         login = findViewById(R.id.login);
         password = findViewById(R.id.password);
+
+        new AsyncTask<Void, Void, List<Game>>() {
+            @Override
+            protected List<Game> doInBackground(Void... voids) {
+                return ServerApi.getGameList();
+            }
+
+
+            @Override
+            protected void onPostExecute(List<Game> games) {
+                Game.GAMES = games;
+
+            }
+        }.execute();
     }
 
 
@@ -32,6 +50,7 @@ public class MainActivity extends Activity {
     }
 
 
+    @SuppressLint("StaticFieldLeak")
     public void login(View view) {
         final MainActivity that = this;
 
@@ -43,13 +62,13 @@ public class MainActivity extends Activity {
 
 
             @Override
-            protected void onPostExecute(User user) {
+            protected void onPostExecute(final User user) {
                 User.CURRENT_USER = user;
+                if (user == null)
+                    return;
 
-                if (user != null) {
-                    Intent intent = new Intent(that, GameListActivity.class);
-                    that.startActivity(intent);
-                }
+                Intent intent = new Intent(that, GameListActivity.class);
+                that.startActivity(intent);
             }
         }.execute();
     }

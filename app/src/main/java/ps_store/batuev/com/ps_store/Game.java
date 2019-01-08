@@ -1,5 +1,14 @@
 package ps_store.batuev.com.ps_store;
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+
+
 public class Game {
+    public static List<Game> GAMES = new ArrayList<>();
+
     private int game_id;
     private String name;
     private String info;
