@@ -16,3 +16,9 @@ if ($reqt['type'] == 'select') {
 	$result = [ 'result' => $source ];
 	echo json_encode($result, JSON_UNESCAPED_UNICODE);
 }
+
+if ($reqt['type'] == 'insert') {
+	mysqli_query($connection, $reqt['query']);
+	$result = [];
+	echo json_encode($result, JSON_UNESCAPED_UNICODE);
+}

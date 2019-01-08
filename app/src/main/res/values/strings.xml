@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">ps_store</string>
+
+    <string-array name="consoleList">
+        <item>Все</item>
+        <item>PS_3</item>
+        <item>PS_4</item>
+        <item>Xbox</item>
+    </string-array>
 </resources>

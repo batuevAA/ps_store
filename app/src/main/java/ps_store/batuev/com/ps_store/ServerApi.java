@@ -94,15 +94,6 @@ public class ServerApi {
     }
 
 
-    /**
-     * Получить список игр по платформе
-     * */
-    public static ArrayList<Game> getGames(GamePlatform platform) {
-
-        return null;
-    }
-
-
 
     /**
      * Покупка игры

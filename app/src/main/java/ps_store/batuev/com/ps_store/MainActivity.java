@@ -33,6 +33,8 @@ public class MainActivity extends Activity {
 
 
     public void login(View view) {
+        final MainActivity that = this;
+
         new AsyncTask<Void, Void, User>() {
             @Override
             protected User doInBackground(Void... strings) {
@@ -43,7 +45,11 @@ public class MainActivity extends Activity {
             @Override
             protected void onPostExecute(User user) {
                 User.CURRENT_USER = user;
-                // TODO: На экран с играми
+
+                if (user != null) {
+                    Intent intent = new Intent(that, GameListActivity.class);
+                    that.startActivity(intent);
+                }
             }
         }.execute();
     }

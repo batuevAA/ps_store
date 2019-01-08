@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:hint="Логин"/>
+                android:hint="Логин" android:text="admin"/>
 
 
         <EditText
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:password="true"
                 android:inputType="text"
-                android:hint="Пароль"/>
+                android:hint="Пароль" android:text="0000"/>
 
         <Button
                 android:layout_width="match_parent"
