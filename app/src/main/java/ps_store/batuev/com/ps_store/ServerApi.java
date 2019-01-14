@@ -2,21 +2,21 @@ package ps_store.batuev.com.ps_store;
 import android.util.Log;
 import com.google.gson.Gson;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 
 
 
 public class ServerApi {
-    private static final String SERVER_URL = "http://192.168.0.100:80/store.php";
+    private static final String SERVER_URL = "http://192.168.0.100:80/";
+    private static final String SERVER_CONTROLLER = SERVER_URL + "store.php";
 
 
     /**
@@ -36,6 +36,19 @@ public class ServerApi {
             return null;
 
         return resp.result.get(0);
+    }
+
+
+    private static final Map<String, byte[]> imageCache = new ConcurrentHashMap<>();
+    public static byte[] getImage(String image_url) {
+        byte[] fromCache = imageCache.get(image_url);
+        if (fromCache != null)
+            return fromCache;
+
+        byte[] data = getStatic(image_url);
+        imageCache.put(image_url, data);
+
+        return data;
     }
 
 
@@ -84,7 +97,9 @@ public class ServerApi {
         Request request = new Request();
         request.query = ALL_GAMES;
 
-        GameListResponse resp = JSON.fromJson(sendRequest(request), GameListResponse.class);
+        String data = sendRequest(request);
+        Log.e("getGameList: ", data);
+        GameListResponse resp = JSON.fromJson(data, GameListResponse.class);
         return resp.result;
     }
 
@@ -109,7 +124,7 @@ public class ServerApi {
     private static String sendRequest(Request request) {
         HttpURLConnection connection = null;
         try {
-            URL url = new URL(SERVER_URL);
+            URL url = new URL(SERVER_CONTROLLER);
             connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
@@ -139,6 +154,29 @@ public class ServerApi {
             if (connection != null) {
                 connection.disconnect();
             }
+        }
+    }
+
+
+    public static byte[] getStatic(String staticUrl) {
+        URL url = null;
+        try {
+            url = new URL(SERVER_URL + staticUrl);
+            InputStream in = new BufferedInputStream(url.openStream());
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+            byte[] buf = new byte[16 * 1024];
+            int n;
+
+            while ((n=in.read(buf)) > 0) {
+                out.write(buf, 0, n);
+            }
+
+            out.close();
+            in.close();
+            return out.toByteArray();
+        } catch (Throwable e) {
+            return null;
         }
     }
 

@@ -1,7 +1,12 @@
 package ps_store.batuev.com.ps_store;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,18 +23,21 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
 
     private LayoutInflater inflater;
     private List<Game> games;
+    private Activity activity;
 
 
-    public GameAdapter(Context context, List<Game> games) {
+    public GameAdapter(Activity context, List<Game> games) {
         this.games = games;
         this.inflater = LayoutInflater.from(context);
+        this.activity = context;
     }
 
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.game, parent, false);
-        return new ViewHolder(view);
+
+        return new ViewHolder(view, activity);
     }
 
 
@@ -46,19 +54,21 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        private final Activity activity;
         private TextView gameName;
         private TextView gamePrice;
         private TextView gamePlatform;
         private ImageView gameImage;
 
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, Activity activity) {
             super(itemView);
 
             this.gameName = itemView.findViewById(R.id.gameName);
             this.gamePrice = itemView.findViewById(R.id.gamePrice);
             this.gamePlatform = itemView.findViewById(R.id.gamePlatform);
             this.gameImage = itemView.findViewById(R.id.gameImage);
+            this.activity = activity;
         }
 
 
@@ -67,6 +77,31 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
             this.gameName.setText(game.getName());
             this.gamePlatform.setText("Плтаформа: " + game.getConsole());
             this.gamePrice.setText(game.getPrice() + " р.");
+
+            final ViewHolder instance = this;
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... voids) {
+                    byte[] img = ServerApi.getImage(game.getImage_url());
+                    if (img == null)
+                        return null;
+
+                    instance.activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Bitmap bitmap = BitmapFactory.decodeByteArray(img, 0, img.length);
+                                instance.gameImage.setImageBitmap(bitmap);
+                            } catch (Throwable e) {
+                                Log.e("AA", "run: ", e);
+                            }
+                        }
+                    });
+
+
+                    return null;
+                }
+            }.execute();
         }
     }
 }
