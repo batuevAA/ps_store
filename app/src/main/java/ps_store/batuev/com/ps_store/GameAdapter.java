@@ -1,10 +1,11 @@
 package ps_store.batuev.com.ps_store;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +21,6 @@ import java.util.List;
 
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
-
     private LayoutInflater inflater;
     private List<Game> games;
     private Activity activity;
@@ -72,13 +72,26 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
         }
 
 
-        @SuppressLint("SetTextI18n")
+        @SuppressLint({ "SetTextI18n", "StaticFieldLeak" })
         public void setGame(Game game) {
+            final ViewHolder instance = this;
+
             this.gameName.setText(game.getName());
             this.gamePlatform.setText("Плтаформа: " + game.getConsole());
             this.gamePrice.setText(game.getPrice() + " р.");
+            this.gameImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle data = new Bundle();
+                    data.putInt("GAME_ID", game.getGame_id());
 
-            final ViewHolder instance = this;
+                    Intent intent = new Intent(instance.activity, GameActivity.class);
+                    intent.putExtra("GAME_ID", game.getGame_id());
+                    instance.activity.startActivity(intent);
+                }
+            });
+
+
             new AsyncTask<Void, Void, Void>() {
                 @Override
                 protected Void doInBackground(Void... voids) {

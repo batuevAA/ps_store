@@ -159,16 +159,15 @@ public class ServerApi {
 
 
     public static byte[] getStatic(String staticUrl) {
-        URL url = null;
         try {
-            url = new URL(SERVER_URL + staticUrl);
+            URL url = new URL(SERVER_URL + staticUrl);
             InputStream in = new BufferedInputStream(url.openStream());
             ByteArrayOutputStream out = new ByteArrayOutputStream();
 
             byte[] buf = new byte[16 * 1024];
             int n;
 
-            while ((n=in.read(buf)) > 0) {
+            while ((n = in.read(buf)) > 0) {
                 out.write(buf, 0, n);
             }
 
