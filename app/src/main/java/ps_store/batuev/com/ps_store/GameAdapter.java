@@ -52,6 +52,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
         return games.size();
     }
 
+    //Определение объектов на экране
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final Activity activity;
@@ -87,7 +88,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
 
                     Intent intent = new Intent(instance.activity, GameActivity.class);
                     intent.putExtra("GAME_ID", game.getGame_id());
-                    instance.activity.startActivity(intent);
+                    instance.activity.startActivity(intent); //переход на новый экран
                 }
             });
 

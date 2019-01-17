@@ -5,8 +5,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@drawable/back"
         tools:context="ps_store.batuev.com.ps_store.GameActivity">
-
 
     <Toolbar
             android:id="@+id/toolbar"
@@ -45,12 +45,14 @@
             <TextView
                     android:id="@+id/gameDescription"
                     android:layout_width="match_parent"
+                    android:textColor="#ffffff"
                     android:layout_height="wrap_content"/>
 
             <TextView
                     android:id="@+id/gamePrice"
                     android:paddingTop="32dp"
                     android:layout_width="match_parent"
+                    android:textColor="#ffffff"
                     android:layout_height="wrap_content"/>
 
 

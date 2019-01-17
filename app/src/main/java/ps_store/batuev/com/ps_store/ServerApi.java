@@ -15,13 +15,13 @@ import java.util.concurrent.ConcurrentHashMap;
 
 
 public class ServerApi {
-    private static final String SERVER_URL = "http://192.168.0.100:80/";
+    private static final String SERVER_URL = "http://192.168.0.2/";
     private static final String SERVER_CONTROLLER = SERVER_URL + "store.php";
 
 
-    /**
-     * Авторизация
-     * */
+
+    //Авторизация
+
     public static User login(String login, String password) {
         Request request = new Request();
         request.query = "SELECT * FROM USERS WHERE login = \'" + login + "\' and password = \'" + password + "\'";
@@ -38,6 +38,7 @@ public class ServerApi {
         return resp.result.get(0);
     }
 
+    //Отрисовка изображений
 
     private static final Map<String, byte[]> imageCache = new ConcurrentHashMap<>();
     public static byte[] getImage(String image_url) {
@@ -57,9 +58,9 @@ public class ServerApi {
     }
 
 
-    /**
-     * Регистрация
-     * */
+
+    //Регистрация
+
     public static void registration(User user) {
         Request checkUser = new Request();
         checkUser.query = "SELECT * FROM USERS WHERE login = \'" + user.getLogin() + "\'";
@@ -89,9 +90,8 @@ public class ServerApi {
     }
 
 
-    /**
-     * Получить список игр
-     * */
+    //Получить список игр
+
     private static final String ALL_GAMES = "SELECT * FROM GAMES";
     public static List<Game> getGameList() {
         Request request = new Request();
@@ -109,17 +109,10 @@ public class ServerApi {
     }
 
 
-
-    /**
-     * Покупка игры
-     * */
-    public static void buy(User user, Game game) {
-    }
+    private static final Gson JSON = new Gson(); //преобразование в json и обратно
 
 
-    private static final Gson JSON = new Gson();
-
-
+    //Отправка запроса на сервер
 
     private static String sendRequest(Request request) {
         HttpURLConnection connection = null;
@@ -157,6 +150,7 @@ public class ServerApi {
         }
     }
 
+//Скачивание картинки
 
     public static byte[] getStatic(String staticUrl) {
         try {

@@ -49,8 +49,8 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
-
     @SuppressLint("StaticFieldLeak")
+   //авторизация
     public void login(View view) {
         final MainActivity that = this;
 
@@ -71,5 +71,10 @@ public class MainActivity extends Activity {
                 that.startActivity(intent);
             }
         }.execute();
+    }
+
+    public void gotocontact(View view) {
+        Intent intent = new Intent(this, ContactActivity.class);
+        startActivity(intent);
     }
 }
