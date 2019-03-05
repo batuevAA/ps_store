@@ -5,5 +5,5 @@
     <color name="colorAccent">#6200EE</color>
     <color name="toolbarIconColor">#FFFFFF</color>
     <color name="loginPageBackgroundColor">#FFFFFF</color>
-    <color name="productGridBackgroundColor">#FFFFFF</color>
+    <color name="productGridBackgroundColor">#212121</color>
 </resources>
