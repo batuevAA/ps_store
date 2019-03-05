@@ -6,7 +6,6 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/back"
         tools:context=".ContactActivity">
 
 
@@ -24,6 +23,7 @@
                 android:text="Контакты"
                 android:textSize="18dp"
                 android:textColor="#ffffff"
+                android:elevation="10dp"
         />
 
     </Toolbar>
@@ -35,7 +35,7 @@
         <TextView
                 android:id="@+id/fio"
                 android:paddingTop="32dp"
-                android:layout_width="match_parent"
+                android:layout_width="212dp"
                 android:layout_height="wrap_content"/>
 
         <TextView

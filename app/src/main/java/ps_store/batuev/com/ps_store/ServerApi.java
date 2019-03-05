@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 
 public class ServerApi {
-    private static final String SERVER_URL = "http://192.168.0.2/";
+    private static final String SERVER_URL = "http://192.168.1.103/";
     private static final String SERVER_CONTROLLER = SERVER_URL + "store.php";
 
 

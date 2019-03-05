@@ -5,18 +5,20 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.widget.EditText;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 
 import java.util.List;
 
 
-
-
-
 public class MainActivity extends Activity {
-    private EditText login;
-    private EditText password;
+    private TextInputLayout login;
+    private TextInputLayout password;
 
 
     @SuppressLint("StaticFieldLeak")
@@ -24,6 +26,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         login = findViewById(R.id.login);
         password = findViewById(R.id.password);
@@ -34,16 +37,45 @@ public class MainActivity extends Activity {
                 return ServerApi.getGameList();
             }
 
-
             @Override
             protected void onPostExecute(List<Game> games) {
                 Game.GAMES = games;
-
             }
         }.execute();
+
     }
 
 
+//    public class MainActivity extends AppCompatActivity {
+//
+//        @Override
+//        protected void onCreate(Bundle savedInstanceState) {
+//            super.onCreate(savedInstanceState);
+//            setContentView(R.layout.activity_main);
+//
+//            if (savedInstanceState == null) {
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .add(R.id.container, new LoginFragment())
+//                        .commit();
+//            }
+//        }
+//
+//    public void navigateTo(Fragment fragment, boolean addToBackstack) {
+//        FragmentTransaction transaction =
+//                getSupportFragmentManager()
+//                        .beginTransaction()
+//                        .replace(R.id.container, fragment);
+//
+//        if (addToBackstack) {
+//            transaction.addToBackStack(null);
+//        }
+//
+//        transaction.commit();
+//    }
+
+
+    //регистрация
     public void registration(View view) {
         Intent intent = new Intent(this, RegistrationActivity.class);
         startActivity(intent);
@@ -57,7 +89,7 @@ public class MainActivity extends Activity {
         new AsyncTask<Void, Void, User>() {
             @Override
             protected User doInBackground(Void... strings) {
-                return ServerApi.login(login.getText().toString(), password.getText().toString());
+                return ServerApi.login(login.getEditText().getText().toString(), password.getEditText().getText().toString());
             }
 
 

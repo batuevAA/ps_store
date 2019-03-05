@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">ps_store</string>
+    <string name="username">Логин</string>
+    <string name="password">Пароль</string>
 
     <string-array name="consoleList">
         <item>Все</item>
