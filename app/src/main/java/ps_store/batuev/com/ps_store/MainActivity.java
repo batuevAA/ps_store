@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.widget.EditText;
@@ -17,8 +18,8 @@ import java.util.List;
 
 
 public class MainActivity extends Activity {
-    private TextInputLayout login;
-    private TextInputLayout password;
+    private TextInputEditText login;
+    private TextInputEditText password;
 
 
     @SuppressLint("StaticFieldLeak")
@@ -45,36 +46,6 @@ public class MainActivity extends Activity {
 
     }
 
-
-//    public class MainActivity extends AppCompatActivity {
-//
-//        @Override
-//        protected void onCreate(Bundle savedInstanceState) {
-//            super.onCreate(savedInstanceState);
-//            setContentView(R.layout.activity_main);
-//
-//            if (savedInstanceState == null) {
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .add(R.id.container, new LoginFragment())
-//                        .commit();
-//            }
-//        }
-//
-//    public void navigateTo(Fragment fragment, boolean addToBackstack) {
-//        FragmentTransaction transaction =
-//                getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.container, fragment);
-//
-//        if (addToBackstack) {
-//            transaction.addToBackStack(null);
-//        }
-//
-//        transaction.commit();
-//    }
-
-
     //регистрация
     public void registration(View view) {
         Intent intent = new Intent(this, RegistrationActivity.class);
@@ -89,7 +60,7 @@ public class MainActivity extends Activity {
         new AsyncTask<Void, Void, User>() {
             @Override
             protected User doInBackground(Void... strings) {
-                return ServerApi.login(login.getEditText().getText().toString(), password.getEditText().getText().toString());
+                return ServerApi.login(login.getText().toString(), password.getText().toString());
             }
 
 

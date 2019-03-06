@@ -1,9 +1,14 @@
 <resources>
-    <string name="app_name">ps_store</string>
+    <string name="app_name">PS_Store</string>
     <string name="username">Логин</string>
     <string name="password">Пароль</string>
     <string name="button_next">Войти</string>
     <string name="button_reg">Регистрация</string>
+    <string name="name">Имя</string>
+    <string name="last_name">Фамилия</string>
+    <string name="card_number">Номер банковской карты</string>
+    <string name="cvv">CVV код</string>
+    <string name="button_freg">Зарегистрироваться</string>
 
     <string-array name="consoleList">
         <item>Все</item>

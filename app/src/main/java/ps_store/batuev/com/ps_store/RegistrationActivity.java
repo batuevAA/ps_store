@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -20,12 +22,12 @@ import java.util.regex.Pattern;
 
 public class RegistrationActivity extends Activity {
     private static final String EMPTY_STRING = "";
-    private EditText first_name;
-    private EditText last_name;
-    private EditText login;
-    private EditText password;
-    private EditText card_number;
-    private EditText ccv;
+    private TextInputEditText first_name;
+    private TextInputEditText last_name;
+    private TextInputEditText login;
+    private TextInputEditText password;
+    private TextInputEditText card_number;
+    private TextInputEditText cvv;
     private Button regButton;
 
 
@@ -47,12 +49,12 @@ public class RegistrationActivity extends Activity {
             }
         });
 
-        first_name = findViewById(R.id.first_name);
-        last_name  = findViewById(R.id.last_name);
-        login = findViewById(R.id.login);
-        password = findViewById(R.id.password);
-        card_number = findViewById(R.id.card_number);
-        ccv = findViewById(R.id.ccv);
+        first_name = (TextInputEditText) findViewById(R.id.first_name);
+        last_name  = (TextInputEditText) findViewById(R.id.last_name);
+        login = (TextInputEditText) findViewById(R.id.login);
+        password = (TextInputEditText) findViewById(R.id.password);
+        card_number = (TextInputEditText) findViewById(R.id.card_number);
+        cvv = (TextInputEditText) findViewById(R.id.cvv);
         regButton = findViewById(R.id.reg_button);
 
 
@@ -61,7 +63,7 @@ public class RegistrationActivity extends Activity {
         login.addTextChangedListener(listener);
         password.addTextChangedListener(listener);
         card_number.addTextChangedListener(listener);
-        ccv.addTextChangedListener(listener);
+        cvv.addTextChangedListener(listener);
     }
 
 
@@ -93,21 +95,16 @@ public class RegistrationActivity extends Activity {
             return;
         }
 
-
-        String code = ccv.getText().toString();
-        if (code.trim().equals(EMPTY_STRING)) {
-            regButton.setEnabled(false);
-            return;
-        }
-
-
         Matcher matcher = CARD_NUMBER_PATTERN.matcher(card_number.getText().toString());
         regButton.setEnabled(matcher.find());
+
+        Matcher matcher1 = CVV_PATTERN.matcher(cvv.getText().toString());
+        regButton.setEnabled(matcher1.find());
     }
 
 
     private static final Pattern CARD_NUMBER_PATTERN = Pattern.compile("^\\d{16}$");
-
+    private static final Pattern CVV_PATTERN = Pattern.compile("^\\d{3}$");
 
 
 
@@ -139,7 +136,7 @@ public class RegistrationActivity extends Activity {
         user.setLogin(login.getText().toString());
         user.setPassword(password.getText().toString());
         user.setCard_number(card_number.getText().toString());
-        user.setCvv(Integer.parseInt(ccv.getText().toString()));
+        user.setCvv(Integer.parseInt(cvv.getText().toString()));
 
         new AsyncTask<Void, Void, Void>() {
             @Override
