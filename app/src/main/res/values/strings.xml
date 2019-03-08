@@ -9,6 +9,7 @@
     <string name="card_number">Номер банковской карты</string>
     <string name="cvv">CVV код</string>
     <string name="button_freg">Зарегистрироваться</string>
+    <string name="filter_title">Фильтр</string>
 
     <string-array name="consoleList">
         <item>Все</item>

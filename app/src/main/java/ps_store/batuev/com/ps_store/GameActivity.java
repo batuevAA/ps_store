@@ -1,20 +1,19 @@
 package ps_store.batuev.com.ps_store;
 
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
+import android.view.*;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toolbar;
+import android.support.v7.widget.Toolbar;
 
 
 
 
-
-public class GameActivity extends Activity {
+public class GameActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +22,9 @@ public class GameActivity extends Activity {
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setActionBar(toolbar);
+        toolbar.setTitle("");
+        setSupportActionBar(toolbar);
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setDisplayShowHomeEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,9 +44,6 @@ public class GameActivity extends Activity {
             }
         }
 
-        TextView gameName = findViewById(R.id.gameName);
-        gameName.setText(game.getName());
-
         ImageView gameImage = findViewById(R.id.gameImage);
         byte[] img = ServerApi.getImage(game.getImage_url());
         if (img != null) {
@@ -65,10 +60,22 @@ public class GameActivity extends Activity {
             });
         }
 
+        String gname = (game.getName());
+        toolbar.setTitle(gname);
+
         TextView gameDescription = findViewById(R.id.gameDescription);
         gameDescription.setText(game.getInfo());
 
         TextView gamePrice = findViewById(R.id.gamePrice);
         gamePrice.setText("Цена: " + game.getPrice() + "р.");
+
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
 }

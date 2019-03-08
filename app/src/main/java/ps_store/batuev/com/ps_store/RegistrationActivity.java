@@ -6,12 +6,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toolbar;
+import android.support.v7.widget.Toolbar;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,7 +22,7 @@ import java.util.regex.Pattern;
 
 
 
-public class RegistrationActivity extends Activity {
+public class RegistrationActivity extends AppCompatActivity {
     private static final String EMPTY_STRING = "";
     private TextInputEditText first_name;
     private TextInputEditText last_name;
@@ -37,10 +39,10 @@ public class RegistrationActivity extends Activity {
         setContentView(R.layout.activity_registration);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setActionBar(toolbar);
+        setSupportActionBar(toolbar);
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setDisplayShowHomeEnabled(true);
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
+//        getActionBar().setDisplayShowHomeEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

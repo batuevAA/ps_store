@@ -1,13 +1,12 @@
 package ps_store.batuev.com.ps_store;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
+import android.support.v7.widget.Toolbar;
+import android.view.*;
 import android.widget.AdapterView;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,8 @@ import java.util.List;
 
 
 
-public class GameListActivity extends Activity {
+public class GameListActivity extends AppCompatActivity
+{
 
     private RecyclerView recyclerView;
     private Spinner spinner;
@@ -30,8 +30,19 @@ public class GameListActivity extends Activity {
         this.recyclerView = findViewById(R.id.gameList);
         this.spinner = findViewById(R.id.consoleType);
 
-        TextView userCash = findViewById(R.id.balance);
-        userCash.setText("Баланс: " + User.CURRENT_USER.getCash() + " р.");
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        //Пока - кнопка назад; Нужно сделать менюшку (автор и выход)
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+//        TextView userCash = findViewById(R.id.balance);
+//        userCash.setText("Баланс: " + User.CURRENT_USER.getCash() + " р.");
 
         this.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -58,6 +69,8 @@ public class GameListActivity extends Activity {
             }
 
 
+
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -68,5 +81,7 @@ public class GameListActivity extends Activity {
         GameAdapter adapter = new GameAdapter(this, Game.GAMES);
         recyclerView.setAdapter(adapter);
 
+
     }
+
 }

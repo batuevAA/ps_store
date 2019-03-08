@@ -3,28 +3,25 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
-        android:background="#ffffff"
         tools:context="ps_store.batuev.com.ps_store.GameActivity">
 
-    <Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:navigationIcon="?android:attr/homeAsUpIndicator">
 
-        <TextView
-                android:id="@+id/gameName"
+    <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                style="@style/AppTheme.Toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="GAME_NAME"
-                android:textSize="18dp"
-                android:textColor="#ffffff"
+                android:layout_height="?attr/actionBarSize"
+                app:navigationIcon="@drawable/ic_back"
         />
 
-    </Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
 
     <ScrollView
             android:layout_width="match_parent"
@@ -46,14 +43,16 @@
             <TextView
                     android:id="@+id/gameDescription"
                     android:layout_width="match_parent"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="15dp"
                     android:layout_height="match_parent"/>
 
             <TextView
                     android:id="@+id/gamePrice"
                     android:paddingTop="10dp"
                     android:layout_width="match_parent"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15dp"
                     android:layout_height="wrap_content"/>
         </LinearLayout>
 

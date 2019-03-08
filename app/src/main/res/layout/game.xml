@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<android.support.design.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        app:cardBackgroundColor="?attr/colorPrimaryDark"
+        app:cardCornerRadius="4dp" xmlns:android="http://schemas.android.com/apk/res/android">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@color/colorPrimary"
+              android:layout_height="match_parent"
               android:orientation="vertical"
-              android:padding="5dp"
-              android:elevation="6dp"
-              android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
-              android:layout_marginVertical="@dimen/activity_vertical_margin"
 >
 
     <TextView
@@ -15,11 +20,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="DESTINY"
+            android:textColor="@color/textColorPrimary"
             android:gravity="center"
             android:padding="5dp"
             android:textStyle="bold"
-            android:textSize="20dp"
-            android:textColor="@color/productGridBackgroundColor"
+            android:textSize="30dp"
+
     />
 
     <ImageView
@@ -34,16 +40,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Платформа: Xbox"
-            android:padding="5dp"
+            android:textColor="@color/textColorPrimary"
+            android:padding="10dp"
     />
 
     <TextView
             android:id="@+id/gamePrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="3000 р."
+            android:text="3000 рублей."
             android:padding="5dp"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/textColorPrimary"
     />
 
 </LinearLayout>
+
+</android.support.design.card.MaterialCardView>

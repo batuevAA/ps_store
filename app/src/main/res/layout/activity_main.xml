@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:text="PS STORE"
                 android:layout_gravity="center"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="48dp"/>
 
         <Space
@@ -77,6 +77,7 @@
 
             <android.support.design.button.MaterialButton
                     android:id="@+id/next_button"
+                    style="@style/Widget.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/button_next"
@@ -84,7 +85,6 @@
 
             <android.support.design.button.MaterialButton
                     android:id="@+id/reg_button"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/button_reg"

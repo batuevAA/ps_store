@@ -78,8 +78,8 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.ViewHolder> {
             final ViewHolder instance = this;
 
             this.gameName.setText(game.getName());
-            this.gamePlatform.setText("Плтаформа: " + game.getConsole());
-            this.gamePrice.setText(game.getPrice() + " р.");
+            this.gamePlatform.setText("Платформа: " + game.getConsole());
+            this.gamePrice.setText(" " + game.getPrice() + " р.");
             this.gameImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

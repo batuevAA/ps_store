@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
+import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.os.Bundle;
@@ -46,6 +47,7 @@ public class MainActivity extends Activity {
 
     }
 
+
     //регистрация
     public void registration(View view) {
         Intent intent = new Intent(this, RegistrationActivity.class);
@@ -80,4 +82,6 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this, ContactActivity.class);
         startActivity(intent);
     }
+
+
 }
