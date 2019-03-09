@@ -1,24 +1,16 @@
 package ps_store.batuev.com.ps_store;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.view.Menu;
 import android.view.View;
-import android.widget.EditText;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-
 import java.util.List;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
     private TextInputEditText login;
     private TextInputEditText password;
 
@@ -46,7 +38,6 @@ public class MainActivity extends Activity {
         }.execute();
 
     }
-
 
     //регистрация
     public void registration(View view) {
@@ -78,10 +69,10 @@ public class MainActivity extends Activity {
         }.execute();
     }
 
-    public void gotocontact(View view) {
-        Intent intent = new Intent(this, ContactActivity.class);
-        startActivity(intent);
-    }
+//    public void gotocontact(View view) {
+//        Intent intent = new Intent(this, ContactActivity.class);
+//        startActivity(intent);
+//    }
 
 
 }

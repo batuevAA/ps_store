@@ -10,6 +10,8 @@
     <string name="cvv">CVV код</string>
     <string name="button_freg">Зарегистрироваться</string>
     <string name="filter_title">Фильтр</string>
+    <string name="contact">Контакты</string>
+    <string name="out">Выход</string>
 
     <string-array name="consoleList">
         <item>Все</item>

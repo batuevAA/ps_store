@@ -7,11 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.*;
 import android.widget.AdapterView;
 import android.widget.Spinner;
-
 import java.util.ArrayList;
 import java.util.List;
-
-
 
 
 
@@ -33,14 +30,13 @@ public class GameListActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //Пока - кнопка назад; Нужно сделать менюшку (автор и выход)
+        //кнопка назад;
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
 //        TextView userCash = findViewById(R.id.balance);
 //        userCash.setText("Баланс: " + User.CURRENT_USER.getCash() + " р.");
 
